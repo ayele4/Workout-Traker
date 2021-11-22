@@ -113,7 +113,7 @@ const workoutSeed = [
     exercises: [
         {
             type: 'resistance',
-            name: 'Army press',
+            name: 'Military press',
             duration: 20,
             weight: 300,
             reps: 10,

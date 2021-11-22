@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 router.get("/workouts", (req, res) => {
     console.log(Date.now());
-    db.Workout,find({})
+    db.Workout.find({})
     .then((dbWorkout) => {
         res.json(dbWorkout);
     })

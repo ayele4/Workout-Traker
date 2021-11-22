@@ -8,7 +8,7 @@ const statsPath = (req, res) => {
 
 const exercisePath = (req, res) => {
     const filePath = path.join(__dirname, "../public/exercise.html");
-    res.sendFile(firlePath);
+    res.sendFile(filePath);
 };
 
 router.get("/exercise", exercisePath);
