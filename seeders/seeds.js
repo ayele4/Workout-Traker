@@ -3,7 +3,6 @@ const db = require('../models');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
 useNewUrlParser: true,
-useFindModif: false,
 useUnifiedTopology: true,
 });
 
@@ -124,9 +123,9 @@ const workoutSeed = [
 ];
 
 db.Workout.deleteMany({})
-    .then(() => db.Workout.collection.inseryMany(workoutSeed))
+    .then(() => db.Workout.collection.insertMany(workoutSeed))
     .then((data) => {
-        console.log(data.result.n + 'records inserted!');
+        console.log(data.result + 'records inserted!');
         process.exit(0);
     })
     .catch((err) => {

@@ -4,37 +4,53 @@ const mongoose = require("mongoose");
 
 router.get("/workouts", (req, res) => {
     console.log(Date.now());
-    db.Workout.find({})
-    .then((dbWorkout) => {
-        res.json(dbWorkout);
+    db.Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: {
+                    $sum: '$exercises.duration',
+                }
+            }
+        }
+    ])
+    .then((dbWorkouts) => {
+        res.json(dbWorkouts);
     })
     .catch((err)=> {
         res.status(500).json(err);
     });
 });
 
-router.get("/workouts/range", (req, rea) => {
-    db.Workout.find({})
+router.get("/workouts/range", (req, res) => {
+    db.Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: {
+                    $sum: '$exercises.duration',
+                }
+            }
+        }
+    ]).sort({_id: -1})
     .limit(7)
-    .then((dbWorkout) => {
-        res.json(dbWorkout);
+    .then((dbWorkouts)=> {
+        console.log(dbWorkouts);
+        res.json(dbWorkouts)
     })
     .catch((err) => {
         res.status(500).json(err);
     });
 });
 
-router.put("/workout/:id", (req, res) => {
+router.put("/workouts/:id", ({body, params}, res) => {
     db.Workout.findByIdAndUpdate(
-        {_id: req.params.id },
-        { $push: {exercises: [req.body]}, $inc: {totalduration: req.body.duration}}
-    )
-    .then((dbWorkout) => {
-        res.json(dbWorkout);
+        params.id,
+        {$push: {exercises: body}},
+        {new: true, runValidators: true}
+    ).then((dbWorkout) => {
+        res.json(dbWorkout)
+    }).catch((err) => {
+        res.json(err);
     })
-    .catch((err) => {
-        res.status(500).json(err);
-    });
 });
 
 router.post("/workouts/", (req, res) => {
