@@ -10,8 +10,7 @@
 <img width="571" alt="Screen Shot 2021-11-23 at 5 24 30 PM" src="https://user-images.githubusercontent.com/84227686/143154769-4ee8b0bb-0cde-4ab3-97d0-23497e21f96c.png">
 
 ## Deployment
-
-
+https://workouttracker-alintamo.herokuapp.com/
 ## Technology Used
 
 * HTML
