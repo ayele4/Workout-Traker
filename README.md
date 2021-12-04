@@ -1,4 +1,4 @@
-# Workout-Traker
+![License](https://img.shields.io/static/v1?label=License&message=MIT&color=BLUE)# Workout-Traker
 
 ## Description
 
